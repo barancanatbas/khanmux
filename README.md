@@ -1,7 +1,7 @@
 # khanmux
 
-### An http router I made to improve myself. May have many errors and shortcomings
-### Basically, it separates the discarded requests into its methods.
+#### An http router I made to improve myself. May have many errors and shortcomings
+#### Basically, it separates the discarded requests into its methods.
 
 ## a small sample
 
