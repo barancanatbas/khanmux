@@ -46,6 +46,12 @@ func (c *Context) Find(i interface{}) error {
 	return nil
 }
 
+func (c *Context) Query(key string) string {
+	param := c.Request.URL.Query().Get(key)
+
+	return param
+}
+
 type Response struct {
 	StatusCode int
 	Data       map[string]interface{}
