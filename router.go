@@ -57,3 +57,7 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	handler.ServeHTTP(w, req)
 }
+
+func (r *Router) Run(port string) {
+	http.ListenAndServe(port, r)
+}

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/barancanatbas/khanmux"
 )
 
@@ -10,13 +8,24 @@ func main() {
 	r := khanmux.NewRouter()
 
 	r.GET("/name", Home)
+	r.POST("/user", SaveUser)
 
-	http.ListenAndServe(":8080", r)
+	r.Run(":8080")
 }
 
 type User struct {
-	Name string `json:"name" xml:"deneme"`
+	Name string `json:"name" xml:"name"`
 	Age  int    `json:"age" xml:"age"`
+}
+
+func SaveUser(c khanmux.Context) error {
+	var user User
+	err := c.Find(&user)
+	if err != nil {
+		return c.JSON(400, "Veri yok")
+	}
+
+	return c.XML(200, user)
 }
 
 func Home(c khanmux.Context) error {
@@ -26,5 +35,5 @@ func Home(c khanmux.Context) error {
 		Age:  20,
 	}
 
-	return c.XML(201, user)
+	return c.JSON(201, user)
 }

@@ -37,6 +37,15 @@ func (c *Context) XML(status int, data interface{}) error {
 	return nil
 }
 
+func (c *Context) Find(i interface{}) error {
+	err := json.NewDecoder(c.Request.Body).Decode(&i)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 type Response struct {
 	StatusCode int
 	Data       map[string]interface{}
